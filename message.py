@@ -48,8 +48,6 @@ def message(data):
         annotations = alert['annotations']
         startsat = alert['startsAt']
         start_time = time_zone_conversion(startsat)
-        print("告警时间：", start_time)
-        print("现在时间：", now_time)
         endsat = alert['endsAt']
         end_time = time_zone_conversion(endsat)
         severity = labels['severity']
