@@ -27,11 +27,20 @@ def duration(a_time, b_time):
     # 持续时间计算
     a = time_stamp(a_time)
     b = time_stamp(b_time)
-    return time.strftime("%H小时%M分钟%S秒", time.gmtime(a - b))
+    m, s = divmod(a - b, 60)
+    h, m = divmod(m, 60)
+    d, h = divmod(h, 24)
+    if d > 0:
+        return "%d天%d小时%d分钟%d秒" % (d, h, m, s)
+    elif h > 0:
+        return "%d小时%d分钟%d秒" % (h, m, s)
+    elif m > 0:
+        return "%d分钟%d秒" % (m, s)
+    else:
+        return "%d秒" % s
 
 
 def message(data):
-    print(json.dumps(data))
     alerts = data['alerts']
     alert_message = []
     for i in range(len(alerts)):
